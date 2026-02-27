@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+    html {
+      font-family: "Montserrat", sans-serif;
+      background-color: whitesmoke;
+    }
+    
+    .estado{
+      display: inline-block;
+      width: 12px;
+      height: 14px;
+      border-radius: 10px;
+      background-color: gray;
+      
+    }
+    li.on > .estado{ background-color: #00BB00; }
+    li.off > .estado{ background-color: #DD0000; }
+    li{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .server_id{
+        background-color: cyan;
+        color: blue;
+        font-size: 0.8em;
+        padding: 0em 0.8em;
+        border-radius: 10px;
+    }
+
+    p,h1{
+      text-align: center;
+      color: navy;
+    }
+
+    p{
+      font-weight: 800;
+    }
+
+    .marco{
+      width: 80%;
+      margin: 0 auto; 
+      border: 1px solid darkgray;
+      border-radius: 10px;
+      background-color: white;
+    }
+  </style>
+</head>  
+<body>
+  <h1>SERVICIOS CORPORATIVOS</h1>
+  <p>Los servicios activos y su estado.</p>
+  <div class="marco">
+    <ul>
+      <li id="web_main_service" class="on"><span class="estado"></span>  Servicio Web principal <span class="server_id">web_main_service</span></li>
+      <li id="web_maintain_service" class="off"><span class="estado"></span>  Servicio Web del área de mantenimiento <span class="server_id">web_maintain_service</span></li>
+      <li id="mail_service" class="on"><span class="estado"></span>  Servicio de correo <span class="server_id">mail_service</span></li>
+      <li id="vpn_service" class="off"><span class="estado"></span>  VPN corporativa <span class="server_id">vpn_service</span></li>
+      <li id="data1_service" class="off"><span class="estado"></span>  Servicio de datos 1 <span class="server_id">data1_service</span></li>
+    </ul>
+  </div>
+
+  <script>
+
+    function limpiaLista(){
+        let i, nodes=document.querySelectorAll('li')
+        for (i=0; i < nodes.length; i++ ) nodes[i].classList.remove( 'on', 'off' )
+    }
+
+    function limpiaLista2(){
+        document.querySelectorAll('li').forEach( (nodo) => { nodo.classList.remove( 'on', 'off' ) } )
+    }
+
+    function limpiaListaByTagName(){
+        let i, nodes= document.getElementsByTagName('li')
+        for ( i=0; i < nodes.length; i++ ) nodes[i].classList.remove( 'on', 'off' )
+    }
+
+    function limpiaActivos(){
+        let nodes= document.getElementsByClassName('on')
+        while ( nodes.length > 0 ) nodes[0].classList.remove( 'on', 'off' )
+    }
+
+    function limpiaInactivos(){
+        let nodes= document.getElementsByClassName('off')
+        while ( nodes.length > 0 ) nodes[0].classList.remove( 'on', 'off' )
+    }
+
+    function cambiaEstado(id, estado){
+        let nodo= document.getElementById( id )
+        nodo.classList.remove( 'on', 'off' )
+        nodo.classList.add( estado )
+    }
+
+    function cambiaEstados( servicios ){
+      let i
+      limpiaLista()
+      for (i=0; i < servicios.length; i++) cambiaEstado( servicios[i].id, servicios[i].estado )
+    }
+
+    function cargaLista(){
+      cambiaEstados([
+        { id: 'web_main_service', estado: 'on' }
+        , { id: 'web_maintain_service', estado: 'off' }
+        , { id: 'mail_service', estado: 'on' }
+        , { id: 'vpn_service', estado: 'on' }
+        , { id: 'data1_service', estado: 'on' }
+      ])
+
+    }
+
+  </script>
+
+</body>
+</html>
