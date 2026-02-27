@@ -66,56 +66,6 @@
     </ul>
   </div>
 
-  <script>
-
-    function limpiaLista(){
-        let i, nodes=document.querySelectorAll('li')
-        for (i=0; i < nodes.length; i++ ) nodes[i].classList.remove( 'on', 'off' )
-    }
-
-    function limpiaLista2(){
-        document.querySelectorAll('li').forEach( (nodo) => { nodo.classList.remove( 'on', 'off' ) } )
-    }
-
-    function limpiaListaByTagName(){
-        let i, nodes= document.getElementsByTagName('li')
-        for ( i=0; i < nodes.length; i++ ) nodes[i].classList.remove( 'on', 'off' )
-    }
-
-    function limpiaActivos(){
-        let nodes= document.getElementsByClassName('on')
-        while ( nodes.length > 0 ) nodes[0].classList.remove( 'on', 'off' )
-    }
-
-    function limpiaInactivos(){
-        let nodes= document.getElementsByClassName('off')
-        while ( nodes.length > 0 ) nodes[0].classList.remove( 'on', 'off' )
-    }
-
-    function cambiaEstado(id, estado){
-        let nodo= document.getElementById( id )
-        nodo.classList.remove( 'on', 'off' )
-        nodo.classList.add( estado )
-    }
-
-    function cambiaEstados( servicios ){
-      let i
-      limpiaLista()
-      for (i=0; i < servicios.length; i++) cambiaEstado( servicios[i].id, servicios[i].estado )
-    }
-
-    function cargaLista(){
-      cambiaEstados([
-        { id: 'web_main_service', estado: 'on' }
-        , { id: 'web_maintain_service', estado: 'off' }
-        , { id: 'mail_service', estado: 'on' }
-        , { id: 'vpn_service', estado: 'on' }
-        , { id: 'data1_service', estado: 'on' }
-      ])
-
-    }
-
-  </script>
-
+  
 </body>
 </html>
